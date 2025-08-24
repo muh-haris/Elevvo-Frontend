@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Collapsible Sidebar</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <style>
+      /* Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        display: flex;
+        min-height: 100vh;
+        background: #f4f6f9;
+      }
+
+      /* Sidebar */
+      .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 240px;
+        background: #1e293b;
+        color: #fff;
+        transition: width 0.3s ease, left 0.3s ease;
+        overflow-x: hidden;
+        z-index: 1001;
+      }
+
+      /* Collapsed */
+      .sidebar.closed {
+        width: 70px;
+      }
+
+      /* Sidebar header */
+      .sidebar-header {
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 15px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .logo {
+        font-size: 1.2rem;
+        font-weight: bold;
+        white-space: nowrap;
+        overflow: hidden;
+        transition: opacity 0.3s ease;
+      }
+
+      .sidebar.closed .logo {
+        opacity: 0; /* hide logo text in collapsed mode */
+      }
+
+      /* Toggle button */
+      .toggle-btn {
+        background: transparent;
+        border: none;
+        color: #fff;
+        font-size: 20px;
+        cursor: pointer;
+      }
+
+      /* Sidebar links */
+      .sidebar ul {
+        list-style: none;
+        margin-top: 20px;
+      }
+
+      .sidebar ul li {
+        padding: 15px 20px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+
+      .sidebar ul li:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .sidebar ul li i {
+        font-size: 18px;
+        margin-right: 15px;
+        min-width: 25px;
+        text-align: center;
+      }
+
+      .sidebar.closed ul li span {
+        display: none;
+      }
+
+      /* Content */
+      .content {
+        flex: 1;
+        margin-left: 240px;
+        padding: 20px;
+        transition: margin-left 0.3s ease;
+      }
+
+      .sidebar.closed ~ .content {
+        margin-left: 70px;
+      }
+
+      /* Overlay for mobile */
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        display: none;
+        z-index: 1000;
+      }
+
+      .overlay.active {
+        display: block;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .sidebar {
+          left: -240px; /* hidden by default */
+        }
+        .sidebar.open {
+          left: 0; /* slides in */
+        }
+        .sidebar.closed {
+          left: -240px; /* fully hidden */
+        }
+        .sidebar ~ .content {
+          margin-left: 0; /* content full width */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <div class="sidebar closed" id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">LOGO</div>
+        <button class="toggle-btn" id="toggleBtn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+      <ul>
+        <li><i class="fas fa-home"></i><span>Home</span></li>
+        <li><i class="fas fa-user"></i><span>Profile</span></li>
+        <li><i class="fas fa-cog"></i><span>Settings</span></li>
+        <li><i class="fas fa-envelope"></i><span>Messages</span></li>
+        <li><i class="fas fa-sign-out-alt"></i><span>Logout</span></li>
+      </ul>
+    </div>
+
+    <!-- Overlay for mobile -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Content -->
+    <div class="content">
+      <h1>Dashboard</h1>
+      <p>
+        This is the main content area. Resize the window to see responsive
+        sidebar.
+      </p>
+    </div>
+
+    <script>
+      const sidebar = document.getElementById("sidebar");
+      const toggleBtn = document.getElementById("toggleBtn");
+      const overlay = document.getElementById("overlay");
+
+      toggleBtn.addEventListener("click", () => {
+        if (window.innerWidth <= 768) {
+          sidebar.classList.toggle("open");
+          overlay.classList.toggle("active");
+        } else {
+          sidebar.classList.toggle("closed");
+        }
+      });
+
+      // Close sidebar when clicking overlay (on mobile)
+      overlay.addEventListener("click", () => {
+        sidebar.classList.remove("open");
+        overlay.classList.remove("active");
+      });
+    </script>
+  </body>
+</html>
