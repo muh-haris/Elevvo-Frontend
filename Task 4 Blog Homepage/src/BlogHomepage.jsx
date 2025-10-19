@@ -6,7 +6,8 @@ const postsData = [
     title: "Getting Started with React",
     category: "Tech",
     date: "2025-08-01",
-    image: "https://via.placeholder.com/400x200?text=React",
+    //image: "https://via.placeholder.com/400x200?text=React",
+    image: "/React.jpg",
     description: "A beginner’s guide to understanding the basics of React and building your first component."
   },
   {
@@ -14,7 +15,8 @@ const postsData = [
     title: "Exploring the Mountains of Hunza",
     category: "Travel",
     date: "2025-07-20",
-    image: "https://via.placeholder.com/400x200?text=Hunza",
+    //image: "https://via.placeholder.com/400x200?text=Hunza",
+    image: "/Hunza.jpg",
     description: "A travel diary about my unforgettable journey to the northern areas of Pakistan."
   },
   {
@@ -22,7 +24,8 @@ const postsData = [
     title: "Top 5 Street Foods in Lahore",
     category: "Food",
     date: "2025-07-10",
-    image: "https://via.placeholder.com/400x200?text=Food",
+    //image: "https://via.placeholder.com/400x200?text=Food",
+    image: "/Food.jpg",
     description: "Exploring the best street food Lahore has to offer, from gol gappay to shawarma."
   },
   {
@@ -30,7 +33,8 @@ const postsData = [
     title: "JavaScript Tips & Tricks",
     category: "Tech",
     date: "2025-07-01",
-    image: "https://via.placeholder.com/400x200?text=JS",
+    //image: "https://via.placeholder.com/400x200?text=JS",
+    image: "/JS.png",
     description: "Handy JavaScript techniques every developer should know."
   },
   {
@@ -38,7 +42,8 @@ const postsData = [
     title: "Discovering Istanbul",
     category: "Travel",
     date: "2025-06-28",
-    image: "https://via.placeholder.com/400x200?text=Istanbul",
+    //image: "https://via.placeholder.com/400x200?text=Istanbul",
+    image: "/Istanbul.jpg",
     description: "Walking through the rich history and culture of Istanbul."
   }
 ];
@@ -130,3 +135,4 @@ export default function BlogHomepage() {
     </div>
   );
 }
+
